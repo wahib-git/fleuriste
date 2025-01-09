@@ -19,8 +19,7 @@
                 <td>{{ commande.id }}</td>
                 <td>{{ commande.date ? commande.date|date('Y-m-d') : '' }}</td>
                 <td>
-                    <a href="{{ path('app_commande_show', {'id': commande.id}) }}">show</a>
-                    <a href="{{ path('app_commande_edit', {'id': commande.id}) }}">edit</a>
+                    <a href="{{ path('app_commande_show', {'id': commande.id}) }}">show_details</a>
                 </td>
             </tr>
         {% else %}
@@ -31,5 +30,4 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_commande_new') }}">Create new</a>
 {% endblock %}

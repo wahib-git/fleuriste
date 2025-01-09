@@ -37,11 +37,6 @@ class Produit
     #[ORM\JoinColumn(nullable: false)]
     private ?Categorie $categorie = null;
 
-    /*
-        #[ORM\ManyToOne(inversedBy: 'produits')]
-        #[ORM\JoinColumn(nullable: false)]
-        private ?Categorie $Categorie = null;
-    */
     /**
      * @var Collection<int, LigneDeCommande>
      */
@@ -106,6 +101,22 @@ class Produit
 
         return $this;
     }
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $image = null;
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(?string $image): static
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
 
     /**
      * @return Collection<int, LigneDeCommande>

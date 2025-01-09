@@ -23,9 +23,7 @@ class LigneDeCommande
     #[ORM\ManyToOne(inversedBy: 'ligneDeCommandes')]
     private ?Produit $Produit = null;
 
-    #[ORM\ManyToOne(inversedBy: 'LigneDeCommande')]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?Produit $produit = null;
+
 
     public function getId(): ?int
     {
@@ -67,4 +65,5 @@ class LigneDeCommande
 
         return $this;
     }
+
 }

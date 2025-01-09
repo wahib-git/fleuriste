@@ -19,14 +19,21 @@ class Commande
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $date = null;
 
-    #[ORM\ManyToOne(inversedBy: 'Commande')]
-    private ?Client $client = null;
-
     /**
      * @var Collection<int, LigneDeCommande>
      */
     #[ORM\OneToMany(targetEntity: LigneDeCommande::class, mappedBy: 'Commande')]
     private Collection $ligneDeCommandes;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $status = null;
+
+    #[ORM\Column]
+    private ?int $prixTotal = null;
+
+
+    #[ORM\ManyToOne(inversedBy: 'Commande')]
+    private ?User $user = null;
 
     public function __construct()
     {
@@ -50,17 +57,6 @@ class Commande
         return $this;
     }
 
-    public function getClient(): ?Client
-    {
-        return $this->client;
-    }
-
-    public function setClient(?Client $client): static
-    {
-        $this->client = $client;
-
-        return $this;
-    }
 
     /**
      * @return Collection<int, LigneDeCommande>
@@ -70,24 +66,38 @@ class Commande
         return $this->ligneDeCommandes;
     }
 
-    public function addLigneDeCommande(LigneDeCommande $ligneDeCommande): static
+    public function getUser(): ?User
     {
-        if (!$this->ligneDeCommandes->contains($ligneDeCommande)) {
-            $this->ligneDeCommandes->add($ligneDeCommande);
-            $ligneDeCommande->setCommande($this);
-        }
+        return $this->user;
+    }
+
+    public function setUser(?User $user): static
+    {
+        $this->user = $user;
 
         return $this;
     }
 
-    public function removeLigneDeCommande(LigneDeCommande $ligneDeCommande): static
+    public function getStatus(): ?string
     {
-        if ($this->ligneDeCommandes->removeElement($ligneDeCommande)) {
-            // set the owning side to null (unless already changed)
-            if ($ligneDeCommande->getCommande() === $this) {
-                $ligneDeCommande->setCommande(null);
-            }
-        }
+        return $this->status;
+    }
+
+    public function setStatus(?string $status): static
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
+    public function getPrixTotal(): ?int
+    {
+        return $this->prixTotal;
+    }
+
+    public function setPrixTotal(int $prixTotal): static
+    {
+        $this->prixTotal = $prixTotal;
 
         return $this;
     }

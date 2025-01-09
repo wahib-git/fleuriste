@@ -1,0 +1,158 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Détails du Produit{% endblock %}
+
+{% block body %}
+    <h1>Détails du Produit</h1>
+
+    <div class="product-details-card">
+        <div class="product-image">
+            <img src="{{ asset('uploads/images/' ~ produit.image) }}" alt="{{ produit.nom }}">
+        </div>
+        <div class="product-info">
+            <h2>{{ produit.nom }}</h2>
+            <p><strong>Description :</strong> {{ produit.description }}</p>
+            <p><strong>Prix :</strong> {{ produit.prix }} dt</p>
+            <p><strong>Quantité en stock :</strong> {{ produit.quantiteEnStok }}</p>
+
+            <div class="order-form">
+                {{ form_start(form) }}
+                {{ form_row(form.quantite, {'label': 'Quantité à commander'}) }}
+                <button type="submit" class="btn btn-primary">Passer Commande</button>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+
+    <div class="back-link">
+        <a href="{{ path('app_produit_index_client') }}" class="btn btn-secondary">Retour à la liste</a>
+    </div>
+
+    <footer>
+        <p>© 2025 Votre Boutique. Tous droits réservés.</p>
+    </footer>
+
+    <style>
+        /* Styles Globaux */
+        body {
+            background-color: rgb(255, 255, 255); /* Couleur de secours */
+            background-image: url("{{ asset('images/background.jpg') }}");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            font-family: 'Roboto', Arial, sans-serif;
+            color: #ffffff;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            text-align: center;
+            margin: 20px 20px;
+            font-size: 2.5em;
+            color: #fff;
+        }
+
+        .product-details-card {
+            max-width: 800px;
+            margin: 40px auto;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgb(5, 5, 5);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .product-image img {
+            max-width: 100%;
+            border-radius: 8px;
+            transition: transform 0.3s ease-in-out;
+            box-shadow: 0 4px 8px rgb(5, 5, 5);
+        }
+
+        .product-image img:hover {
+            transform: scale(1.1);
+        }
+
+        .product-info {
+            flex: 1 1 50%;
+            color: #050505;
+        }
+
+        .product-info h2 {
+            font-size: 1.8em;
+            margin-bottom: 15px;
+        }
+
+        .product-info p {
+            margin: 10px 0;
+            line-height: 1.5;
+            color: #050505;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            text-align: center;
+            transition: background 0.3s ease-in-out, transform 0.2s ease-in-out;
+            font-size: 1em;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        .btn-primary:hover {
+            background-color: #007bff;
+            transform: scale(1.05);
+        }
+
+        .btn-secondary {
+            background-color: rgb(255, 255, 255);
+            color: #fff;
+            margin-top: 20px;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .btn-secondary:hover {
+            background-color: #ffffff;
+            transform: scale(1.05);
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 20px;
+            padding: 10px 0;
+            background: rgba(245, 245, 245, 0.1);
+            color: #050505;
+            font-size: 0.9em;
+        }
+
+        footer p {
+            margin: 0;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .product-details-card {
+                flex-direction: column;
+                padding: 10px;
+            }
+
+            .product-info {
+                text-align: center;
+            }
+
+            .btn {
+                width: 100%;
+                margin: 10px 0;
+            }
+        }
+    </style>
+{% endblock %}

@@ -138,5 +138,8 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="bootstrap" level="application" />
+    <orderEntry type="library" name="simple" level="application" />
+    <orderEntry type="library" name="basscss" level="application" />
   </component>
 </module>
